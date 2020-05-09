@@ -34,8 +34,71 @@ class ship {
     }
 }
 
-let sss = new ship(1, 42, 3, "Submarine")
 
+
+
+
+// let sss = new ship(1, 42, 3, "Submarine")
+
+
+// function placeShip() {
+//     let sss = new ship(1, 42, 3, "Submarine")
+
+        
+//         function checkStartPosition() {
+//             if (grid[sss.startPosition].state = 0) {
+//                 return true
+//             } else {
+//                 return false
+//             }
+//         }
+
+//         function checkForEdges() {
+//             if (grid[sss.startPosition].col + sss.size > cols) {
+//                 return true
+//             } else {
+//                 return false
+//             }
+//         }
+ 
+//         if (checkStartPosition = true) { }
+
+// }
+
+// placeShip()
+
+//VIEW
+
+function createGrid1() {
+        var gameBoardContainer = document.getElementById("gameboard");
+        for (i = 0; i < cols; i++) {
+            for (j = 0; j < rows; j++) {
+                id = 0;
+                id ++;
+                sq = document.createElement("div");
+                gameBoardContainer.appendChild(sq);
+
+                var topPosition = j * squareSize;
+                var leftPosition = i * squareSize;			
+    
+                sq.style.top = topPosition + 'px';
+                sq.style.left = leftPosition + 'px';	
+
+                if (grid[id].state == 0) {
+                    sq.style.background = 'lightBlue';
+                } else if (grid[id].state == 1) {
+                    sq.style.background = 'darkBlue';
+                } else if (grid[id].state == 2) {
+                    sq.style.background = 'brown';
+                } else if (grid[id].state == 3) {
+                    sq.style.background = 'red'
+                }
+                
+            }
+        }
+    }
+
+createGrid1() 
 
 
 // function createCell() {
