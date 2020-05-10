@@ -1,5 +1,6 @@
 var rows = 10;
 var cols = 10;
+let gridSize = rows * cols;
 var squareSize = 50;
 let grid = []; 
 let id = 0;
@@ -15,10 +16,10 @@ class cell {
 }
 
 class ship {
-    constructor(orientation, startPosition, size, name) {
+    constructor(orientation, startPosition, shipSize, name) {
         this.orientation = orientation;
         this.startPosition = startPosition;
-        this.size = size;
+        this.shipSize = shipSize;
         this.name = name;
     }
 }
@@ -39,16 +40,35 @@ createGrid();
 
 
 function placeShip() {
-    let sss = new ship(1, 5, 0, "Submarine")
+    let s = new ship(0, Math.floor(Math.random() * gridSize), 3, "Submarine")
 
-            if (grid[sss.startPosition].state == 0) {
-                console.log(grid[sss.startPosition].state)
-                grid[sss.startPosition].state = 1
-                console.log(grid[sss.startPosition].state)              
+            // if (grid[s.startPosition] + grid[s.startPosition].shipSize > )
+
+            if (grid[s.startPosition].state == 0) {
+                for (i = 0; i < s.shipSize; i++) {
+                    grid[s.startPosition].state = 1;
+                    grid[s.startPosition + (i*10)].state  = 1;
+                }
+
+                
+               
+                
+            // if (orientation === 0) {
+            //     if 
+            // }   
+            
         }
 }
 
+
+
+
+
+
 placeShip()
+
+
+
 
 
 //VIEW
@@ -64,9 +84,9 @@ function createGrid1() {
                 
 
                 if (grid[idd].state == 0) {
-                    sq.style.backgroundColor = "red"
+                    sq.style.backgroundColor = "lightblue"
                 } else {
-                    sq.style.backgroundColor = "blue"
+                    sq.style.backgroundColor = "red"
                 }
 
                 gameBoardContainer.appendChild(sq);
