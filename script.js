@@ -7,6 +7,9 @@ let id = 0;
 let idd = 0;
 let shipOrientation = 0;
 
+let fleetSetup = [5,4,3,3,2];
+let fleet = [];
+
 class cell {
     constructor(id, row, col, state) {
         this.id = id;
@@ -26,10 +29,10 @@ class ship {
 }
 
 function createGrid() {      
-    for (i = 0; i < cols; i++) {
-        for (j = 0; j < rows; j++) {
+    for (x = 0; x < cols; x++) {
+        for (y = 0; y < rows; y++) {
             id ++;
-            let p = new cell(id, i, j, 0);
+            let p = new cell(id, x, y, 0);
             grid.push(p);
             // console.log(id);
         }
@@ -38,11 +41,39 @@ function createGrid() {
 createGrid();
 
 
+function xxx() {
+        // while (y.length < x.length) {
+
+        //     let v = new cell(Math.floor(Math.random() * 20))
+        //     if (v.id < 1) {
+        //     y.push(v);
+        //     }
+        // }
+        
+        while (fleet.length < fleetSetup.length) {
+
+            let s = new ship(0, Math.floor(Math.random() * gridSize), 3, "Submarine")
+
+            if  (
+                ((s.startPosition + (s.shipSize*cols)) < gridSize) &
+                (grid[s.startPosition].state == 0)
+                )
+                
+                
+                {
+                for (i = 0; i < s.shipSize; i++) {
+                    grid[s.startPosition + (i * cols)].state = 1;
+                }
 
 
-function placeShip() {
-    // let s = new ship(Math.floor(Math.random() * 4), Math.floor(Math.random() * gridSize), 4, "Submarine")
-    let s = new ship(0, Math.floor(Math.random() * gridSize), 4, "Submarine")
+
+                fleet.push(s); 
+                }
+                
+
+        }    
+}    
+xxx();
 
         // Randomly choose a starting square
         // Determine starting orientation
@@ -51,47 +82,93 @@ function placeShip() {
         // Then if all of the above is OK, place ship / change states of each cell
 
             
-            //// DETERMINE STARTING ORIENTATION
-            if (s.orientation == 0) { shipOrientation = cols};  // RIGHT
-            if (s.orientation == 1) { shipOrientation = 1};  // DOWN  
-            if (s.orientation == 2) { shipOrientation = -cols};  // LEFT
-            if (s.orientation == 3) { shipOrientation = -1};  // UP
+           
             
-            // CHECKS STARTING POSITION
-            function checkPlacement() {
-                for (i = 0; i < s.shipSize; i++) {
-                    if (grid[s.startPosition + (i * shipOrientation)].state  == 0) {
-                    return true;
-                    }
-                }
-            }
+            // // CHECKS STARTING POSITION
+            // function checkPlacement() {
+            //     for (i = 0; i < s.shipSize; i++) {
+            //         if (grid[s.startPosition + (i * shipOrientation)].state  == 0) {
+            //         return true;
+            //         }
+            //     }
+            // }
 
-            // CHECK EDGES
-            function checkEdges() {
-                for (i = 0; i < s.shipSize; i++) {
-                    if (grid[s.startPosition + (i * shipOrientation)].id-1 < gridSize) {
-                    return true;   
-                    }
-                }  
-            }
+//             // CHECK EDGES
+//             function checkEdges() {
+//                 for (i = 0; i < s.shipSize; i++) {
+//                     if (grid[s.startPosition + (i * shipOrientation)].id-1 < gridSize) {
+//                     return true;   
+//                     }
+//                 }  
+//             }
 
             
-if (checkEdges() == true) {console.log('Placement squares unnoccupied')};
-if (checkEdges() == true) {console.log('All within edges')};
+// if (checkEdges() == true) {console.log('Placement squares unnoccupied')};
+// if (checkEdges() == true) {console.log('All within edges')};
 
 
 
-if (grid[s.startPosition].state == 0) {
-    for (i = 0; i < s.shipSize; i++) {
-        grid[s.startPosition].state = 1;
-        grid[s.startPosition + (i * shipOrientation)].state = 1;
-    }
-}
+// if (grid[s.startPosition].state == 0) {
+//     for (i = 0; i < s.shipSize; i++) {
+//         grid[s.startPosition].state = 1;
+//         grid[s.startPosition + (i * shipOrientation)].state = 1;
+//     }
+// }
+
+/////////////////////////////
+
+// function placeShip() {
+//     // let s = new ship(Math.floor(Math.random() * 4), Math.floor(Math.random() * gridSize), 4, "Submarine")
+//     let s = new ship(0, Math.floor(Math.random() * gridSize), 4, "Submarine")
+
+//         // Randomly choose a starting square
+//         // Determine starting orientation
+//         // Check that the squares that a ship is on are not already used
+//         // Check that the ships do not cross the edges of the grid
+//         // Then if all of the above is OK, place ship / change states of each cell
+
+            
+//             //// DETERMINE STARTING ORIENTATION
+//             if (s.orientation == 0) { shipOrientation = cols};  // RIGHT
+//             if (s.orientation == 1) { shipOrientation = 1};  // DOWN  
+//             if (s.orientation == 2) { shipOrientation = -cols};  // LEFT
+//             if (s.orientation == 3) { shipOrientation = -1};  // UP
+            
+//             // CHECKS STARTING POSITION
+//             function checkPlacement() {
+//                 for (i = 0; i < s.shipSize; i++) {
+//                     if (grid[s.startPosition + (i * shipOrientation)].state  == 0) {
+//                     return true;
+//                     }
+//                 }
+//             }
+
+//             // CHECK EDGES
+//             function checkEdges() {
+//                 for (i = 0; i < s.shipSize; i++) {
+//                     if (grid[s.startPosition + (i * shipOrientation)].id-1 < gridSize) {
+//                     return true;   
+//                     }
+//                 }  
+//             }
+
+            
+// if (checkEdges() == true) {console.log('Placement squares unnoccupied')};
+// if (checkEdges() == true) {console.log('All within edges')};
 
 
-}
 
-placeShip()
+// if (grid[s.startPosition].state == 0) {
+//     for (i = 0; i < s.shipSize; i++) {
+//         grid[s.startPosition].state = 1;
+//         grid[s.startPosition + (i * shipOrientation)].state = 1;
+//     }
+// }
+
+
+// }
+
+// placeShip()
 
 // function check() {
 //     if (rows == 100) {
@@ -125,6 +202,15 @@ function createGrid1() {
                 }
 
                 gameBoardContainer.appendChild(sq);
+                let tn1 = document.createTextNode( grid[idd].col +', '+grid[idd].row );
+                let tnbr = document.createElement("br")
+                let tn2 = document.createTextNode( grid[idd].id)
+
+                // sq.style.color = "red";
+                sq.style.verticalAlign = "bottom";
+                sq.appendChild(tn1);
+                sq.appendChild(tnbr);
+                sq.appendChild(tn2);
 		        
 
                 // console.log(idd);
