@@ -20,9 +20,11 @@ class cell {
 }
 
 class ship {
-    constructor(orientation, startPosition, shipSize, name) {
+    constructor(id, orientation, row, col, shipSize, name) {
+        this.id = id;
         this.orientation = orientation;
-        this.startPosition = startPosition;
+        this.row = row;
+        this.col = col;
         this.shipSize = shipSize;
         this.name = name;
     }
@@ -52,17 +54,17 @@ function xxx() {
         
         while (fleet.length < fleetSetup.length) {
 
-            let s = new ship(0, Math.floor(Math.random() * gridSize), 3, "Submarine")
+            let s = new ship(Math.floor(Math.random() * gridSize), 0, 0, 0, 3, "Submarine")
 
             if  (
-                ((s.startPosition + (s.shipSize*cols)) < gridSize) &
-                (grid[s.startPosition].state == 0)
+                ((s.id + (s.shipSize*cols)) < gridSize) &
+                (grid[s.id].state == 0)
                 )
                 
                 
                 {
                 for (i = 0; i < s.shipSize; i++) {
-                    grid[s.startPosition + (i * cols)].state = 1;
+                    grid[s.id + (i * cols)].state = 1;
                 }
 
 
