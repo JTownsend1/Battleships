@@ -23,8 +23,8 @@ class ship {
     constructor(id, orientation, row, col, shipSize, name) {
         this.id = id;
         this.orientation = orientation;
-        this.row = row;
-        this.col = col;
+        this.row = Math.floor(this.id/10);
+        this.col = this.id - (Math.floor(this.id/10)*10);
         this.shipSize = shipSize;
         this.name = name;
     }
@@ -33,8 +33,8 @@ class ship {
 function createGrid() {      
     for (x = 0; x < cols; x++) {
         for (y = 0; y < rows; y++) {
-            id ++;
-            let p = new cell(id, x, y, 0);
+            let p = new cell(id, y, x, 0);
+            id ++; // put this incrementor before or after the cell object creation to change the id number of the cell (i.e array number or "real" number)
             grid.push(p);
             // console.log(id);
         }
@@ -54,14 +54,23 @@ function xxx() {
         
         while (fleet.length < fleetSetup.length) {
 
-            let s = new ship(Math.floor(Math.random() * gridSize), 0, 0, 0, 3, "Submarine")
+            let s = new ship(Math.floor(Math.random() * gridSize), 0, this.row, this.col, 3, "Submarine")
+
+            // if  (
+            //     ((s.id + ((s.shipSize-1)*cols)) < gridSize) &
+            //     (grid[s.id].state == 0)
+            //     )
+                    
+            //     {
+            //     for (i = 0; i < s.shipSize; i++) {
+            //         grid[s.id + (i * cols)].state = 1;
+            //     }
 
             if  (
-                ((s.id + (s.shipSize*cols)) < gridSize) &
+                ((s.id + ((s.shipSize-1)*cols)) < gridSize) &
                 (grid[s.id].state == 0)
                 )
-                
-                
+                    
                 {
                 for (i = 0; i < s.shipSize; i++) {
                     grid[s.id + (i * cols)].state = 1;
