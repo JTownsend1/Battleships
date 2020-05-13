@@ -23,8 +23,8 @@ class ship {
     constructor(id, orientation, row, col, shipSize, name) {
         this.id = id;
         this.orientation = orientation;
-        this.row = Math.floor(this.id/10);
-        this.col = this.id - (Math.floor(this.id/10)*10);
+        this.row = this.id - (Math.floor(this.id/10)*10);
+        this.col = Math.floor(this.id/10);
         this.shipSize = shipSize;
         this.name = name;
     }
@@ -67,13 +67,13 @@ function xxx() {
             //     }
 
             if  (
-                ((s.id + ((s.shipSize-1)*cols)) < gridSize) &
+                ((s.id + (s.shipSize-1)) < (s.col*10)+10) &
                 (grid[s.id].state == 0)
                 )
                     
                 {
                 for (i = 0; i < s.shipSize; i++) {
-                    grid[s.id + (i * cols)].state = 1;
+                    grid[s.id + i].state = 1;
                 }
 
 
