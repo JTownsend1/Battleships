@@ -50,29 +50,42 @@ createGrid();
 function xxx() {
         while (fleet.length < fleetSetup.length) {
 
-            let s = new ship(Math.floor(Math.random() * gridSize), 0, this.row, this.col, 3, "Submarine");
-            // let s = new ship(Math.floor(Math.random() * gridSize), Math.floor(Math.random() * 2), this.row, this.col, 1, "Submarine");
+            let s = new ship(Math.floor(Math.random() * gridSize), 0, this.row, this.col, 2, "Submarine");
+            // let s = new ship(Math.floor(Math.random() * gridSize), Math.floor(Math.random() * 2), this.row, this.col, 2, "Submarine");
+            // let s = new ship(Math.floor(Math.random() * gridSize), 0, this.row, this.col, Math.floor(Math.random() * 4), "Submarine");
+
+            let shipL = 0;
+
+            while (shipL < s.shipSize) {
 
 
-            if (s.orientation == 0) {
-                let shipCount = 0;
-                while (shipCount < s.shipSize)
-                    if (grid[s.id + (cols)].state == 0) {
-                        s.id++;
-                        shipCount++;
-                        console.log(s);
-                        } 
-                        
-                        // else {
-                        //     shipCount = 0;
-                        // }
-                        
-                    
-               
+            if (
+                (s.orientation == 0) 
+                
+                ) 
+                {
+                    console.log("0") 
+                         
+                }
 
+            // if (
+            //     (s.orientation == 1) 
+              
+            //     ) 
+            //     {
+            //         console.log("1")   
+                                 
+            //     }
+                shipL++; 
+
+                
             }
+
+
+
+        
     fleet.push(s); 
-    // console.log(s);
+    console.log(s);
     }
 
 } 
