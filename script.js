@@ -10,6 +10,10 @@ let shipOrientation = 0;
 let fleetSetup = [5,4,3,3,2];
 let fleet = [];
 
+// let shipL = [];
+// let count = 0;
+
+
 class cell {
     constructor(id, row, col, state) {
         this.id = id;
@@ -44,46 +48,34 @@ createGrid();
 
 
 function xxx() {
-        // while (y.length < x.length) {
-
-        //     let v = new cell(Math.floor(Math.random() * 20))
-        //     if (v.id < 1) {
-        //     y.push(v);
-        //     }
-        // }
-        
         while (fleet.length < fleetSetup.length) {
 
-            let s = new ship(Math.floor(Math.random() * gridSize), 0, this.row, this.col, 3, "Submarine")
+            let s = new ship(Math.floor(Math.random() * gridSize), 0, this.row, this.col, 3, "Submarine");
+            // let s = new ship(Math.floor(Math.random() * gridSize), Math.floor(Math.random() * 2), this.row, this.col, 1, "Submarine");
 
-            // if  (
-            //     ((s.id + ((s.shipSize-1)*cols)) < gridSize) &
-            //     (grid[s.id].state == 0)
-            //     )
+
+            if (s.orientation == 0) {
+                let shipCount = 0;
+                while (shipCount < s.shipSize)
+                    if (grid[s.id + (cols)].state == 0) {
+                        s.id++;
+                        shipCount++;
+                        console.log(s);
+                        } 
+                        
+                        // else {
+                        //     shipCount = 0;
+                        // }
+                        
                     
-            //     {
-            //     for (i = 0; i < s.shipSize; i++) {
-            //         grid[s.id + (i * cols)].state = 1;
-            //     }
+               
 
-            if  (
-                ((s.id + (s.shipSize-1)) < (s.col*10)+10) &
-                (grid[s.id].state == 0)
-                )
-                    
-                {
-                for (i = 0; i < s.shipSize; i++) {
-                    grid[s.id + i].state = 1;
-                }
+            }
+    fleet.push(s); 
+    // console.log(s);
+    }
 
-
-
-                fleet.push(s); 
-                }
-                
-
-        }    
-}    
+} 
 xxx();
 
         // Randomly choose a starting square
