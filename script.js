@@ -23,14 +23,12 @@ class cell {
     }
 }
 
-class ship {
-    constructor(id, orientation, row, col, shipSize, name) {
+class shipCell {
+    constructor(id, row, col, state) {
         this.id = id;
-        this.orientation = orientation;
         this.row = this.id - (Math.floor(this.id/10)*10);
         this.col = Math.floor(this.id/10);
-        this.shipSize = shipSize;
-        this.name = name;
+        this.state = state
     }
 }
 
@@ -46,50 +44,45 @@ function createGrid() {
 }
 createGrid();
 
+let shipL = [];
 
-function xxx() {
-        while (fleet.length < fleetSetup.length) {
+function createShip() {
+let z = 0;
+let shipID = Math.floor(Math.random() * gridSize);
+// let shipID = 2;
 
-            let s = new ship(Math.floor(Math.random() * gridSize), 0, this.row, this.col, 2, "Submarine");
-            // let s = new ship(Math.floor(Math.random() * gridSize), Math.floor(Math.random() * 2), this.row, this.col, 2, "Submarine");
-            // let s = new ship(Math.floor(Math.random() * gridSize), 0, this.row, this.col, Math.floor(Math.random() * 4), "Submarine");
+while (z<3) {
+    let s = new shipCell(shipID+z, this.row, this.col, 1);
 
-            let shipL = 0;
-
-            while (shipL < s.shipSize) {
-
-
-            if (
-                (s.orientation == 0) 
-                
-                ) 
-                {
-                    console.log("0") 
-                         
-                }
-
-            // if (
-            //     (s.orientation == 1) 
-              
-            //     ) 
-            //     {
-            //         console.log("1")   
-                                 
-            //     }
-                shipL++; 
-
-                
-            }
-
-
-
-        
-    fleet.push(s); 
-    console.log(s);
+    if (grid[shipID].state == 0) {
+        shipL.push(s);
+        z++;
+    } else {
+        z = 0;
     }
+}
+
+fleet.push(shipL);
+console.log(shipL);
+
+for (i = 0; i < shipL.length; i++) {
+    console.log(shipL[i].id) 
+    grid[shipL[i].id].state = 1;
+}
+
+
+
+
+// console.log(shipL);
+// console.log(fleet);
+
 
 } 
-xxx();
+createShip();
+
+//  experiment = () =>  console.log("hhhhhhhh");
+
+//  experiment();
 
         // Randomly choose a starting square
         // Determine starting orientation
