@@ -7,8 +7,10 @@ let id = 0;
 let idd = 0;
 let shipOrientation = 0;
 
-let fleetSetup = [5];
+let fleetSetup = [5,4,3,3,2];
 let fleet = [];
+
+let shipSize = 3;
 
 // let shipL = [];
 // let count = 0;
@@ -44,7 +46,9 @@ function createGrid() {
 }
 createGrid();
 
-grid[60].state = 1;
+// grid[60].state = 1;
+// grid[20].state = 1;
+// grid[84].state = 1;
 
 // console.log(grid[60].id);
 
@@ -55,7 +59,7 @@ let shipL = [];
 let shipC = [];
 let z = 0;
 let y = 0;
-let shipSize = 50;
+// let shipSize = 10; // Placed in global scope for time being. Will need to be replaced with an array that spits out values for this.
 
 // let shipID = Math.floor(Math.random() * (gridSize-shipSize));
 // let limit = gridSize-shipSize;
@@ -75,13 +79,14 @@ while (z < fleetSetup.length) {
             if (grid[shipID+y].state == 1) {
                 // break;
                 // shipL = [];
-                shipID = 0;
+                shipID = Math.floor(Math.random() * (gridSize-shipSize));
                 shipL = [];
                 y = 0;
                 // z = 0;
             }
             
             else {
+
             y++;
             // y=0
             }
@@ -101,6 +106,11 @@ while (z < fleetSetup.length) {
 // console.log(shipID)
 // console.log(shipL);
 // console.log(fleet);
+// if (grid[shipID+y].state == 0) {
+//     grid[shipID+y].state = 1
+// }
+
+
 
 } 
 
@@ -111,8 +121,24 @@ createShip();
 // console.log(shipL);
 console.log(fleet);
 
+for (i = 0; i < fleet.length; i++) {
+    // grid[fleet.shipID+i].state = 1
+ 
+        for (y = 0; y < shipSize; y++) {
+            console.log(fleet[i][y].id)
+            if (grid[fleet[i][y].id].state == 0) {
+                grid[fleet[i][y].id].state = 1;
+            }
+        }
+
+}
+
+// console.log(fleet[0][0].id)
 
 // createFleet();
+
+// console.log(grid)
+
 
 
 //////////////////////////////////////////
