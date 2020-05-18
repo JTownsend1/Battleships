@@ -44,41 +44,87 @@ function createGrid() {
 }
 createGrid();
 
-let shipL = [];
+grid[60].state = 1;
+
+// console.log(grid[60].id);
+
+// let shipL = [];
 
 function createShip() {
+let shipL = [];
+let shipC = [];
 let z = 0;
-let shipID = Math.floor(Math.random() * gridSize);
-// let shipID = 2;
+let y = 0;
+let shipSize = 4;
+// let shipID = Math.floor(Math.random() * (gridSize-shipSize));
+// let limit = gridSize-shipSize;
 
-while (z<3) {
-    let s = new shipCell(shipID+z, this.row, this.col, 1);
 
-    if (grid[shipID].state == 0) {
-        shipL.push(s);
+while (z < shipSize) {
+
+    let shipID = Math.floor(Math.random() * (gridSize-shipSize));
+
+        while (y < shipSize) {
+            shipL = [];
+            shipL.push(new shipCell(shipID+y, this.row, this.col, 1));
+            y++;
+            
+           
+        }
+        fleet.push(shipL);
+
+        y=0;
         z++;
-    } else {
-        z = 0;
-    }
-}
+  
 
-fleet.push(shipL);
+}
 console.log(shipL);
-
-for (i = 0; i < shipL.length; i++) {
-    console.log(shipL[i].id) 
-    grid[shipL[i].id].state = 1;
-}
-
-
-
-
-// console.log(shipL);
 // console.log(fleet);
 
-
 } 
+
+
+
 createShip();
+    
+// console.log(shipL);
+console.log(fleet);
+
+
+// createFleet();
+
+
+//////////////////////////////////////////
+// let p = Math.floor(Math.random()*10);
+// let q = [];
+// t = () => { return Math.floor(Math.random()*10)}
+
+// for (i=0; i<10; i++) {
+    
+
+//     q.push(t());
+
+//     if (t() < 2) {
+//         console.log("ZERO")
+//         i = 0
+//         q = []
+//     }
+
+//     console.log(i)
+
+
+// }
+//////////////////////////////////////////
+// console.log(p)
+
+
+
+
+
+
+
+
+
 
 //  experiment = () =>  console.log("hhhhhhhh");
 

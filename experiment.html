@@ -35,13 +35,24 @@
     //     y.push(v);
     // }
 
-    while (y.length < x.length) {
+    // while (y.length < x.length) {
 
-        let v = new cell(Math.floor(Math.random() * 20))
-        if (v.id < 1) {
-        y.push(v);
-        }
-    }
+    //     let v = new cell(Math.floor(Math.random() * 20))
+    //     if (v.id < 1) {
+    //     y.push(v);
+    //     }
+    // }
+
+
+    if  (
+                ((s.id + (s.shipSize-1)) < (s.col*10)+10) &
+                (grid[s.id].state == 0)
+                )
+                    
+                {
+                for (i = 0; i < s.shipSize; i++) {
+                    grid[s.id + i].state = 1;
+                }
 
 
 
