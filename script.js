@@ -7,7 +7,7 @@ let id = 0;
 let idd = 0;
 let shipOrientation = 0;
 
-let fleetSetup = [5,4,3,3,2];
+let fleetSetup = [5];
 let fleet = [];
 
 // let shipL = [];
@@ -55,7 +55,8 @@ let shipL = [];
 let shipC = [];
 let z = 0;
 let y = 0;
-let shipSize = 4;
+let shipSize = 55;
+
 // let shipID = Math.floor(Math.random() * (gridSize-shipSize));
 // let limit = gridSize-shipSize;
 
@@ -67,7 +68,24 @@ while (z < fleetSetup.length) {
         while (y < shipSize) {
             
             shipL.push(new shipCell(shipID+y, this.row, this.col, 1));
+            
+            // y++;
+            // console.log(shipID+y)
+
+            if (grid[shipID+y].state == 1) {
+                // break;
+                // shipL = [];
+                shipID = 0;
+                shipL = [];
+                y = 0;
+                z = 0;
+            }
+            
+            else {
             y++;
+            // y=0
+            }
+            // y++;
             
            
         }
@@ -77,9 +95,11 @@ while (z < fleetSetup.length) {
         y=0;
         z++;
         shipL = [];
+        
 
 }
-console.log(shipL);
+// console.log(shipID)
+// console.log(shipL);
 // console.log(fleet);
 
 } 
