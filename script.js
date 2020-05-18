@@ -48,7 +48,7 @@ createGrid();
 
 // grid[60].state = 1;
 // grid[20].state = 1;
-// grid[84].state = 1;
+// grid[99].state = 1;
 
 // console.log(grid[60].id);
 
@@ -56,7 +56,6 @@ createGrid();
 
 function createShip() {
 let shipL = [];
-let shipC = [];
 let z = 0;
 let y = 0;
 // let shipSize = 10; // Placed in global scope for time being. Will need to be replaced with an array that spits out values for this.
@@ -67,7 +66,7 @@ let y = 0;
 
 while (z < fleetSetup.length) {
 
-    let shipID = Math.floor(Math.random() * (gridSize-shipSize));
+    let shipID = Math.floor(Math.random() * gridSize);
 
         while (y < shipSize) {
             
@@ -75,10 +74,17 @@ while (z < fleetSetup.length) {
             
             // y++;
             // console.log(shipID+y)
+            // console.log(shipL[y].col);
+            console.log(shipL[y].col+1*cols);
 
-            if (grid[shipID+y].state == 1) {
+            if (
+                (grid[shipID+y].state == 1)
+                || (grid[shipID].id + shipSize > (((shipL[y].col)*cols+10)))
+                )
+                {
                 // break;
                 // shipL = [];
+            
                 shipID = Math.floor(Math.random() * (gridSize-shipSize));
                 shipL = [];
                 y = 0;
@@ -96,6 +102,11 @@ while (z < fleetSetup.length) {
         }
         
         fleet.push(shipL);
+
+        for (t=0; t < shipL.length; t++) {
+            // console.log(shipL[t].id)
+            grid[shipL[t].id].state = 1
+        }
 
         y=0;
         z++;
@@ -119,19 +130,21 @@ while (z < fleetSetup.length) {
 createShip();
     
 // console.log(shipL);
-console.log(fleet);
+// console.log(fleet);
 
-for (i = 0; i < fleet.length; i++) {
-    // grid[fleet.shipID+i].state = 1
+
+
+// for (i = 0; i < fleet.length; i++) {
+//     // grid[fleet.shipID+i].state = 1
  
-        for (y = 0; y < shipSize; y++) {
-            console.log(fleet[i][y].id)
-            if (grid[fleet[i][y].id].state == 0) {
-                grid[fleet[i][y].id].state = 1;
-            }
-        }
+//         for (y = 0; y < shipSize; y++) {
+//             console.log(fleet[i][y].id)
+//             if (grid[fleet[i][y].id].state == 0) {
+//                 grid[fleet[i][y].id].state = 1;
+//             }
+//         }
 
-}
+// }
 
 // console.log(fleet[0][0].id)
 
