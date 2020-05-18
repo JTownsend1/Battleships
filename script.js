@@ -60,22 +60,23 @@ let shipSize = 4;
 // let limit = gridSize-shipSize;
 
 
-while (z < shipSize) {
+while (z < fleetSetup.length) {
 
     let shipID = Math.floor(Math.random() * (gridSize-shipSize));
 
         while (y < shipSize) {
-            shipL = [];
+            
             shipL.push(new shipCell(shipID+y, this.row, this.col, 1));
             y++;
             
            
         }
+        
         fleet.push(shipL);
 
         y=0;
         z++;
-  
+        shipL = [];
 
 }
 console.log(shipL);
