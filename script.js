@@ -55,7 +55,7 @@ let shipL = [];
 let shipC = [];
 let z = 0;
 let y = 0;
-let shipSize = 55;
+let shipSize = 50;
 
 // let shipID = Math.floor(Math.random() * (gridSize-shipSize));
 // let limit = gridSize-shipSize;
@@ -78,7 +78,7 @@ while (z < fleetSetup.length) {
                 shipID = 0;
                 shipL = [];
                 y = 0;
-                z = 0;
+                // z = 0;
             }
             
             else {
