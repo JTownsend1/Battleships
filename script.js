@@ -12,8 +12,6 @@ let fleet = [];
 
 let shipSize = 3;
 
-// let shipL = [];
-// let count = 0;
 
 
 class cell {
@@ -40,7 +38,6 @@ function createGrid() {
             let p = new cell(id, y, x, 0);
             id ++; // put this incrementor before or after the cell object creation to change the id number of the cell (i.e array number or "real" number)
             grid.push(p);
-            // console.log(id);
         }
     }
 }
@@ -50,254 +47,43 @@ createGrid();
 // grid[20].state = 1;
 // grid[99].state = 1;
 
-// console.log(grid[60].id);
-
-// let shipL = [];
 
 function createShip() {
-let shipL = [];
-let z = 0;
-let y = 0;
+let shipLength = [];
+let shipCount  = 0;
+let fleetCount = 0;
 // let shipSize = 10; // Placed in global scope for time being. Will need to be replaced with an array that spits out values for this.
 
-// let shipID = Math.floor(Math.random() * (gridSize-shipSize));
-// let limit = gridSize-shipSize;
 
+    while (shipCount  < fleetSetup.length) {
+        let shipSection = Math.floor(Math.random() * gridSize);
+            while (fleetCount < shipSize) {
+                shipLength.push(new shipCell(shipSection+fleetCount, this.row, this.col, 1));
+                console.log(shipLength[fleetCount].col+1*cols);
 
-while (z < fleetSetup.length) {
-
-    let shipID = Math.floor(Math.random() * gridSize);
-
-        while (y < shipSize) {
-            
-            shipL.push(new shipCell(shipID+y, this.row, this.col, 1));
-            
-            // y++;
-            // console.log(shipID+y)
-            // console.log(shipL[y].col);
-            console.log(shipL[y].col+1*cols);
-
-            if (
-                (grid[shipID+y].state == 1)
-                || (grid[shipID].id + shipSize > (((shipL[y].col)*cols+10)))
-                )
-                {
-                // break;
-                // shipL = [];
-            
-                shipID = Math.floor(Math.random() * (gridSize-shipSize));
-                shipL = [];
-                y = 0;
-                // z = 0;
+                if ((grid[shipSection+fleetCount].state == 1) || (grid[shipSection].id + shipSize > (((shipLength[fleetCount].col)*cols+10)))) {
+                    shipSection = Math.floor(Math.random() * (gridSize-shipSize));
+                    shipLength = [];
+                    fleetCount = 0; 
+                } else {
+                fleetCount++;
+                }   
             }
             
-            else {
+            fleet.push(shipLength);
 
-            y++;
-            // y=0
+            for (t=0; t < shipLength.length; t++) {
+                grid[shipLength[t].id].state = 1
             }
-            // y++;
-            
-           
-        }
-        
-        fleet.push(shipL);
 
-        for (t=0; t < shipL.length; t++) {
-            // console.log(shipL[t].id)
-            grid[shipL[t].id].state = 1
-        }
-
-        y=0;
-        z++;
-        shipL = [];
-        
-
-}
-// console.log(shipID)
-// console.log(shipL);
-// console.log(fleet);
-// if (grid[shipID+y].state == 0) {
-//     grid[shipID+y].state = 1
-// }
-
-
-
+            fleetCount = 0;
+            shipCount ++;
+            shipLength = [];
+    }
 } 
-
-
 
 createShip();
     
-// console.log(shipL);
-// console.log(fleet);
-
-
-
-// for (i = 0; i < fleet.length; i++) {
-//     // grid[fleet.shipID+i].state = 1
- 
-//         for (y = 0; y < shipSize; y++) {
-//             console.log(fleet[i][y].id)
-//             if (grid[fleet[i][y].id].state == 0) {
-//                 grid[fleet[i][y].id].state = 1;
-//             }
-//         }
-
-// }
-
-// console.log(fleet[0][0].id)
-
-// createFleet();
-
-// console.log(grid)
-
-
-
-//////////////////////////////////////////
-// let p = Math.floor(Math.random()*10);
-// let q = [];
-// t = () => { return Math.floor(Math.random()*10)}
-
-// for (i=0; i<10; i++) {
-    
-
-//     q.push(t());
-
-//     if (t() < 2) {
-//         console.log("ZERO")
-//         i = 0
-//         q = []
-//     }
-
-//     console.log(i)
-
-
-// }
-//////////////////////////////////////////
-// console.log(p)
-
-
-
-
-
-
-
-
-
-
-//  experiment = () =>  console.log("hhhhhhhh");
-
-//  experiment();
-
-        // Randomly choose a starting square
-        // Determine starting orientation
-        // Check that the squares that a ship is on are not already used
-        // Check that the ships do not cross the edges of the grid
-        // Then if all of the above is OK, place ship / change states of each cell
-
-            
-           
-            
-            // // CHECKS STARTING POSITION
-            // function checkPlacement() {
-            //     for (i = 0; i < s.shipSize; i++) {
-            //         if (grid[s.startPosition + (i * shipOrientation)].state  == 0) {
-            //         return true;
-            //         }
-            //     }
-            // }
-
-//             // CHECK EDGES
-//             function checkEdges() {
-//                 for (i = 0; i < s.shipSize; i++) {
-//                     if (grid[s.startPosition + (i * shipOrientation)].id-1 < gridSize) {
-//                     return true;   
-//                     }
-//                 }  
-//             }
-
-            
-// if (checkEdges() == true) {console.log('Placement squares unnoccupied')};
-// if (checkEdges() == true) {console.log('All within edges')};
-
-
-
-// if (grid[s.startPosition].state == 0) {
-//     for (i = 0; i < s.shipSize; i++) {
-//         grid[s.startPosition].state = 1;
-//         grid[s.startPosition + (i * shipOrientation)].state = 1;
-//     }
-// }
-
-/////////////////////////////
-
-// function placeShip() {
-//     // let s = new ship(Math.floor(Math.random() * 4), Math.floor(Math.random() * gridSize), 4, "Submarine")
-//     let s = new ship(0, Math.floor(Math.random() * gridSize), 4, "Submarine")
-
-//         // Randomly choose a starting square
-//         // Determine starting orientation
-//         // Check that the squares that a ship is on are not already used
-//         // Check that the ships do not cross the edges of the grid
-//         // Then if all of the above is OK, place ship / change states of each cell
-
-            
-//             //// DETERMINE STARTING ORIENTATION
-//             if (s.orientation == 0) { shipOrientation = cols};  // RIGHT
-//             if (s.orientation == 1) { shipOrientation = 1};  // DOWN  
-//             if (s.orientation == 2) { shipOrientation = -cols};  // LEFT
-//             if (s.orientation == 3) { shipOrientation = -1};  // UP
-            
-//             // CHECKS STARTING POSITION
-//             function checkPlacement() {
-//                 for (i = 0; i < s.shipSize; i++) {
-//                     if (grid[s.startPosition + (i * shipOrientation)].state  == 0) {
-//                     return true;
-//                     }
-//                 }
-//             }
-
-//             // CHECK EDGES
-//             function checkEdges() {
-//                 for (i = 0; i < s.shipSize; i++) {
-//                     if (grid[s.startPosition + (i * shipOrientation)].id-1 < gridSize) {
-//                     return true;   
-//                     }
-//                 }  
-//             }
-
-            
-// if (checkEdges() == true) {console.log('Placement squares unnoccupied')};
-// if (checkEdges() == true) {console.log('All within edges')};
-
-
-
-// if (grid[s.startPosition].state == 0) {
-//     for (i = 0; i < s.shipSize; i++) {
-//         grid[s.startPosition].state = 1;
-//         grid[s.startPosition + (i * shipOrientation)].state = 1;
-//     }
-// }
-
-
-// }
-
-// placeShip()
-
-// function check() {
-//     if (rows == 100) {
-//         return true;
-//     }
-// }
-
-// check();
-
-// if (check()==true) {
-//     console.log('YES')
-// }
-
-
 //// VIEW
 
 function createGrid1() {
@@ -305,10 +91,7 @@ function createGrid1() {
         for (i = 0; i < cols; i++) {
             for (j = 0; j < rows; j++) {
               	
-          
                 let sq = document.createElement("div");
-
-                
 
                 if (grid[idd].state == 0) {
                     sq.style.backgroundColor = "lightblue"
@@ -326,10 +109,7 @@ function createGrid1() {
                 sq.appendChild(tn1);
                 sq.appendChild(tnbr);
                 sq.appendChild(tn2);
-		        
-
-                // console.log(idd);
-                // console.log(grid[idd].state);
+		    
                 idd++;
 
                 var topPosition = j * squareSize;
