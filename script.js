@@ -7,8 +7,8 @@ let id = 0;
 let idd = 0;
 let shipOrientation = 0;
 
-// let fleetSetup = [1,2,3,4,5,6,7,8,9,0];
-let fleetSetup = [1,2,3,4,5];
+let fleetSetup = [1,2,3,4,5,6,7,8,9,0];
+// let fleetSetup = [1,2,3,4,5];
 // let fleetSetup = [1,2,3,4,5,6,7,8,9,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
 
 let fleet = [];
@@ -61,43 +61,53 @@ function createShip() {
     while (shipCount  < fleetSetup.length) {
         let shipSection = Math.floor(Math.random() * gridSize);
 
-
+        let orientation = Math.floor(Math.random() * 2)
 
 
             while (fleetCount < shipSize) {
-                shipLength.push(new shipCell(shipSection + fleetCount, this.row, this.col, 1));
+                shipLength.push(new shipCell(shipSection + fleetCount, this.row, this.col, 0, Math.floor(Math.random() * 2)));
                 console.log(shipLength[fleetCount].id);
 
-                if ( // VERTICAL
-                    (grid[shipSection+fleetCount].state == 1) 
-                    || (grid[shipSection].id + shipSize > ((grid[shipSection].col*cols)+10))
                 
-                ) {
-                    shipSection = Math.floor(Math.random() * (gridSize));
-                    shipLength = [];
-                    fleetCount = 0; 
-                } else {
-                fleetCount++;
-                }   
-            }
+
+                if (orientation == 0) {
+
+                                if ( // VERTICAL
+                                    (grid[shipSection+fleetCount].state == 1) 
+                                    || (grid[shipSection].id + shipSize > ((grid[shipSection].col*cols)+10))
+                                
+                                ) {
+                                    shipSection = Math.floor(Math.random() * (gridSize));
+                                    shipLength = [];
+                                    fleetCount = 0; 
+                                } else {
+                                fleetCount++;
+                                }   
+                            }
+                
 
 
-            // while (fleetCount < shipSize) {
-            //     shipLength.push(new shipCell(shipSection + (fleetCount*cols), this.row, this.col, 1));
-            //     console.log(grid[shipLength[fleetCount].id].state)
-         
-            //     if ( // HORIZONTAL
-            //         (grid[shipSection+fleetCount*cols].state == 1) 
-            //         || (grid[shipSection].col + (shipSize) > cols)
+
+                else if (orientation == 1) {
+
+                            while (fleetCount < shipSize) {
+                                shipLength.push(new shipCell(shipSection + (fleetCount*cols), this.row, this.col, 1));
+                                console.log(grid[shipLength[fleetCount].id].state)
                         
-            //     ) {
-            //         shipSection = Math.floor(Math.random() * (gridSize));
-            //         shipLength = [];
-            //         fleetCount = 0; 
-            //     } else {
-            //     fleetCount++;        
-            //     }   
-            // }
+                                if ( // HORIZONTAL
+                                    (grid[shipSection+fleetCount*cols].state == 1) 
+                                    || (grid[shipSection].col + (shipSize) > cols)
+                                        
+                                ) {
+                                    shipSection = Math.floor(Math.random() * (gridSize));
+                                    shipLength = [];
+                                    fleetCount = 0; 
+                                } else {
+                                fleetCount++;        
+                                }   
+                            }
+                        }
+                    }
 
             fleet.push(shipLength);
 
@@ -125,66 +135,6 @@ createShip();
 
 
 
-
-
-
-
-
-
-// function createFleet() {
-// let shipLength = [];
-// let shipCount  = 0;
-// let fleetCount = 0;
-// let v = 0;
-// // let shipSize = 10; // Placed in global scope for time being. Will need to be replaced with an array that spits out values for this.
-
-
-//     while (shipCount  < fleetSetup.length) {
-        
-//         let shipSection = Math.floor(Math.random() * gridSize);
-//         let orientation = Math.floor(Math.random() * 2);
-        
-//             while (fleetCount < shipSize) {
-//                 shipLength.push(new shipCell(shipSection+v, this.row, this.col, 1, orientation));
-
-                    
-//                 // if (shipLength[0].orientation == 0) { // HORIZONTAL
-//                     // if ((grid[shipSection+fleetCount].state == 1) 
-//                     // || (grid[shipSection].id + (shipSize * cols) > (gridSize))) {
-//                     //     shipSection = Math.floor(Math.random() * gridSize);
-//                     //     shipLength = [];
-//                     //     fleetCount = 0; 
-//                     // } else {
-//                     // fleetCount ++ //////// its all about the fleetcount;
-//                     // v = fleetCount * 10;
-//                     // }
-//                 // }
-
-//                 // else if (shipLength[0].orientation == 1) { // VERTICAL
-//                     if ((grid[shipSection+fleetCount].state == 1) 
-//                     || (grid[shipSection].id + shipSize > (((shipLength[fleetCount].col)*cols+10)))) {
-//                         shipSection = Math.floor(Math.random() * (gridSize-shipSize));
-//                         shipLength = [];
-//                         fleetCount = 0; 
-//                     } else {
-//                     fleetCount++;
-//                     }   
-//                 // }
-//             }
-            
-//             fleet.push(shipLength);
-
-//             for (t=0; t < shipLength.length; t++) {
-//                 grid[shipLength[t].id].state = 1
-//             }
-
-//             fleetCount = 0;
-//             shipCount ++;
-//             shipLength = [];
-//     }
-// } 
-
-// createFleet();
     
 //// VIEW
 
