@@ -7,13 +7,13 @@ let id = 0;
 let idd = 0;
 let shipOrientation = 0;
 
-let fleetSetup = [1,2,3,4,5,6,7,8,9,0];
-// let fleetSetup = [1,2,3,4,5];
+// let fleetSetup = [1,2,3,4,5,6,7,8,9,0];
+let fleetSetup = [5,4,3,3,2];
 // let fleetSetup = [1,2,3,4,5,6,7,8,9,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
 
 let fleet = [];
 
-let shipSize = 3;
+// let shipSize = 4;
 
 
 
@@ -56,10 +56,12 @@ function createShip() {
     let shipLength = [];
     let shipCount  = 0;
     let fleetCount = 0;
-    // let shipSize = 10; // Placed in global scope for time being. Will need to be replaced with an array that spits out values for this.
+    // let shipSize = 3; // Placed in global scope for time being. Will need to be replaced with an array that spits out values for this.
     
     while (shipCount  < fleetSetup.length) {
         let shipSection = Math.floor(Math.random() * gridSize);
+
+        let shipSize = fleetSetup[shipCount];
 
         let orientation = Math.floor(Math.random() * 2)
 
@@ -126,11 +128,6 @@ function createShip() {
     } 
     
 createShip();
-
-
-
-
-
 
 
 
