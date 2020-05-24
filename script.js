@@ -9,7 +9,7 @@ let shipOrientation = 0;
 
 // let fleetSetup = [1,2,3,4,5,6,7,8,9,0];
 let fleetSetup = [5,4,3,3,2];
-// let fleetSetup = [1,2,3,4,5,6,7,8,9,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
+// let fleetSetup = [10,10,1,2,3,4,5,6,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3];
 
 let fleet = [];
 
@@ -52,6 +52,8 @@ createGrid();
 // grid[20].state = 1;
 // grid[99].state = 1;
 
+
+
 function createShip() {
     let shipLength = [];
     let shipCount  = 0;
@@ -68,7 +70,7 @@ function createShip() {
 
             while (fleetCount < shipSize) {
                 shipLength.push(new shipCell(shipSection + fleetCount, this.row, this.col, 0, Math.floor(Math.random() * 2)));
-                console.log(shipLength[fleetCount].id);
+                // console.log(shipLength[fleetCount].id);
 
                 
 
@@ -88,13 +90,11 @@ function createShip() {
                             }
                 
 
-
-
                 else if (orientation == 1) {
 
                             while (fleetCount < shipSize) {
                                 shipLength.push(new shipCell(shipSection + (fleetCount*cols), this.row, this.col, 1));
-                                console.log(grid[shipLength[fleetCount].id].state)
+                                // console.log(grid[shipLength[fleetCount].id].state)
                         
                                 if ( // HORIZONTAL
                                     (grid[shipSection+fleetCount*cols].state == 1) 
@@ -113,10 +113,10 @@ function createShip() {
 
             fleet.push(shipLength);
 
-            console.log(shipLength);
+            // console.log(shipLength);
             
             for (t=0; t < shipLength.length; t++) {
-            console.log(grid[shipLength[t].id].id)
+            // console.log(grid[shipLength[t].id].id)
             grid[shipLength[t].id].state = 1;
             }
                       
@@ -132,7 +132,8 @@ createShip();
 
 
 
-    
+
+
 //// VIEW
 
 function createGrid1() {
@@ -140,12 +141,19 @@ function createGrid1() {
         for (i = 0; i < cols; i++) {
             for (j = 0; j < rows; j++) {
               	
-                let sq = document.createElement("div");
+                let sq = document.createElement("shipcell");
+                sq.addEventListener("click", changeState);
 
-                if (grid[idd].state == 0) {
+                if (grid[idd].state == 0 || 1) {
                     sq.style.backgroundColor = "lightblue"
-                } else {
-                    sq.style.backgroundColor = "red"
+                } 
+                
+                // if (grid[idd].state == 2){
+                //     sq.style.backgroundColor = "red"
+                // }
+
+                if (grid[idd].state == 3){
+                    sq.style.backgroundColor = "navy"
                 }
 
                 gameBoardContainer.appendChild(sq);
@@ -167,9 +175,37 @@ function createGrid1() {
                 sq.style.top = topPosition + 'px';
                 sq.style.left = leftPosition + 'px';
 
+                // let nodeList = documemt.querySelector("div")
+                // console.log(nodeList)
         
             }
         }
     }
 
 createGrid1() 
+
+
+
+function changeState() {
+
+    console.log(event.target.parentNode.childNodes)
+   
+    let v = event.target.childNodes[2].textContent
+
+    // console.log(typeof v)
+
+    console.log(v)
+    parseInt(v)
+
+    if (grid[v].state == 0) {
+    
+    event.target.style.backgroundColor = "navy"
+    } else if (grid[v].state == 1) {
+        event.target.style.backgroundColor = "red"
+    }
+  
+}
+    
+
+
+
